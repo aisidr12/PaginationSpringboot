@@ -23,6 +23,15 @@ public class SecurityConfig {
     this.jwtRequestFilter = jwtRequestFilter;
   }
 
+  /**
+   * Here we modify the filter in which we disable first the crsf, after that we authorizeHttpRequests
+   * with the endpoint that we want to allow to access in order to authenticate, that is why we permitAll any request
+   * that is already authenticated. Then, we manage as session with the state STATELESS.
+   * Finally, we explicit add the filter before with we already created and then build
+   * @param http
+   * @return
+   * @throws Exception
+   */
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
